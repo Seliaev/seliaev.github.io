@@ -39,6 +39,8 @@
     </nav>
     <div class="sidebar-footer">
       <a href="../index.html" target="_blank" class="btn-link">← Открыть сайт</a>
+      <button class="btn-link" id="exportDataBtn" title="Скачать data.js для деплоя на GitHub Pages">📥 Экспорт data.js</button>
+      <label class="btn-link" style="cursor:pointer" title="Импортировать ранее сохранённый data.js">📤 Импорт data.js<input type="file" id="importDataFile" accept=".js" style="display:none"></label>
       <button class="btn-link logout" id="logoutBtn">Выйти</button>
     </div>
   </aside>
@@ -129,11 +131,34 @@
 
         <div class="form-group full">
           <hr style="border-color:var(--border);margin:16px 0">
+          <h3 style="margin-bottom:8px">🚀 Публикация на GitHub Pages</h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">
+            Нажмите кнопку ниже — изменения сразу появятся на <strong>seliaev.github.io</strong>.<br>
+            GitHub Token хранится только в вашем браузере (localStorage), не публикуется.
+          </p>
+        </div>
+        <div class="form-group">
+          <label>GitHub Personal Access Token</label>
+          <input id="s-gh-token" type="password" placeholder="ghp_...">
+        </div>
+        <div class="form-group">
+          <label>Репозиторий (owner/repo)</label>
+          <input id="s-gh-repo" type="text" placeholder="Seliaev/seliaev.github.io">
+        </div>
+        <div class="form-group full">
+          <button class="btn btn-primary" id="pushGithubBtn">🚀 Опубликовать на GitHub</button>
+          <span id="pushMsg" style="margin-left:12px;font-size:14px"></span>
+        </div>
+        <div class="form-group full" style="color:var(--muted);font-size:12px">
+          ℹ️ Нужен токен с правами <code>repo</code>. Создайте на <a href="https://github.com/settings/tokens" target="_blank" style="color:var(--primary)">github.com/settings/tokens</a>
+        </div>
+      </div>
+        <div class="form-group full">
+          <hr style="border-color:var(--border);margin:16px 0">
           <h3 style="margin-bottom:12px">Сброс данных</h3>
           <button class="btn btn-danger" id="resetDataBtn">⚠️ Сбросить все данные к стандартным</button>
         </div>
       </div>
-    </div>
 
   </main>
 </div>
