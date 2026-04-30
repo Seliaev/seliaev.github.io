@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PULSE — Аналитическая платформа нового поколения</title>
+    <meta name="description" content="PULSE — SaaS-платформа бизнес-аналитики в реальном времени. Объедините все источники данных, стройте дашборды за минуты, принимайте решения быстрее.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="#" class="logo">
+            <span class="logo-icon">⚡</span>PULSE
+        </a>
+        <nav class="nav" id="nav">
+            <a href="#features" class="nav-link">Возможности</a>
+            <a href="#dashboard" class="nav-link">Дашборды</a>
+            <a href="#integrations" class="nav-link">Интеграции</a>
+            <a href="#pricing" class="nav-link">Тарифы</a>
+            <a href="#faq" class="nav-link">FAQ</a>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="btn btn-ghost">Войти</a>
+            <a href="#pricing" class="btn btn-primary">Попробовать бесплатно</a>
+        </div>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-glow hero-glow--1"></div>
+    <div class="hero-glow hero-glow--2"></div>
+    <div class="container hero-inner">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Новинка · Версия 3.0 уже в релизе
+            </div>
+            <h1 class="hero-title">
+                Аналитика,<br>которая работает<br>
+                <span class="gradient-text">быстрее вас</span>
+            </h1>
+            <p class="hero-desc">PULSE объединяет все источники данных вашего бизнеса в единый живой дашборд. Видите аномалии и возможности раньше конкурентов.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary btn-lg">
+                    Начать бесплатно
+                    <span class="btn-arrow">→</span>
+                </a>
+                <a href="#dashboard" class="btn btn-ghost btn-lg">
+                    <span class="play-icon">▶</span>
+                    Смотреть демо
+                </a>
+            </div>
+            <div class="hero-trust">
+                <span>Уже используют</span>
+                <div class="trust-logos">
+                    <span class="trust-logo">Яндекс</span>
+                    <span class="trust-logo">Ozon</span>
+                    <span class="trust-logo">Сбер</span>
+                    <span class="trust-logo">VK</span>
+                    <span class="trust-logo">Тинькофф</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="dash-card dash-main">
+                <div class="dash-header">
+                    <span class="dash-title">Revenue Overview</span>
+                    <span class="dash-live"><span class="live-dot"></span> Live</span>
+                </div>
+                <div class="dash-metric">
+                    <span class="metric-val" id="hero-revenue">₽4 821 340</span>
+                    <span class="metric-up">↑ 23.4%</span>
+                </div>
+                <canvas id="main-chart" width="360" height="120"></canvas>
+                <div class="dash-row">
+                    <div class="dash-mini">
+                        <span class="dm-label">Конверсия</span>
+                        <span class="dm-val green">8.7%</span>
+                    </div>
+                    <div class="dash-mini">
+                        <span class="dm-label">Сессии</span>
+                        <span class="dm-val">142K</span>
+                    </div>
+                    <div class="dash-mini">
+                        <span class="dm-label">Отказы</span>
+                        <span class="dm-val red">31.2%</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Floating cards -->
+            <div class="float-card float-card--1">
+                <span class="fc-icon">👥</span>
+                <div>
+                    <div class="fc-val">+1 247</div>
+                    <div class="fc-label">новых пользователей</div>
+                </div>
+            </div>
+            <div class="float-card float-card--2">
+                <span class="fc-icon">🎯</span>
+                <div>
+                    <div class="fc-val">98.9%</div>
+                    <div class="fc-label">аптайм</div>
+                </div>
+            </div>
+            <div class="float-card float-card--3">
+                <canvas id="donut-chart" width="80" height="80"></canvas>
+                <div>
+                    <div class="fc-val">64%</div>
+                    <div class="fc-label">цель месяца</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+    <div class="container stats-inner">
+        <div class="stat-item">
+            <span class="stat-num" data-target="12000" data-suffix="+">0</span>
+            <span class="stat-label">клиентов</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+            <span class="stat-num" data-target="340" data-suffix="B+">0</span>
+            <span class="stat-label">событий в сутки</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+            <span class="stat-num" data-target="99.9" data-suffix="%">0</span>
+            <span class="stat-label">SLA аптайм</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat-item">
+            <span class="stat-num" data-target="4" data-suffix=" мс">0</span>
+            <span class="stat-label">задержка данных</span>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features section" id="features">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Возможности</span>
+            <h2 class="section-title">Всё, что нужно для<br><span class="gradient-text">data-driven решений</span></h2>
+            <p>От сбора данных до автоматических инсайтов — полный стек аналитики в одном продукте.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fc--large reveal">
+                <div class="fc-visual">
+                    <div class="fc-chart-wrap">
+                        <canvas id="feature-chart" width="300" height="160"></canvas>
+                    </div>
+                </div>
+                <div class="fc-text">
+                    <span class="fc-tag">Real-time</span>
+                    <h3>Живые данные без задержек</h3>
+                    <p>Streaming-архитектура обрабатывает миллионы событий в секунду. Видите изменения немедленно — не через 15 минут.</p>
+                </div>
+            </div>
+            <div class="feature-card reveal">
+                <span class="f-icon">🤖</span>
+                <h3>AI-аномалии</h3>
+                <p>Машинное обучение автоматически находит аномалии и предупреждает вас до того, как проблема станет критической.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="f-icon">🔌</span>
+                <h3>200+ интеграций</h3>
+                <p>PostgreSQL, BigQuery, Salesforce, Stripe, Google Ads, ВКонтакте и ещё 190+ источников данных «из коробки».</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="f-icon">📊</span>
+                <h3>No-code дашборды</h3>
+                <p>Drag&amp;drop конструктор. Создайте профессиональный дашборд за 5 минут без единой строки кода.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="f-icon">🔐</span>
+                <h3>Enterprise безопасность</h3>
+                <p>SOC 2 Type II, GDPR, end-to-end шифрование, SSO, ролевой доступ, аудит-лог всех действий.</p>
+            </div>
+            <div class="feature-card reveal">
+                <span class="f-icon">📱</span>
+                <h3>Алерты везде</h3>
+                <p>Slack, Telegram, email, SMS, webhook. Настройте умные пороги и получайте только важные уведомления.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<section class="dashboard section" id="dashboard">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Продукт</span>
+            <h2 class="section-title">Дашборд, который<br><span class="gradient-text">говорит сам за себя</span></h2>
+        </div>
+        <div class="dash-tabs" id="dash-tabs">
+            <button class="dtab active" data-tab="overview">Обзор</button>
+            <button class="dtab" data-tab="marketing">Маркетинг</button>
+            <button class="dtab" data-tab="sales">Продажи</button>
+            <button class="dtab" data-tab="product">Продукт</button>
+        </div>
+        <div class="dash-preview reveal" id="dash-preview">
+            <div class="dp-sidebar">
+                <div class="dp-logo">⚡ PULSE</div>
+                <nav class="dp-nav">
+                    <a class="dp-nav-item active" href="#">📊 Обзор</a>
+                    <a class="dp-nav-item" href="#">📈 Аналитика</a>
+                    <a class="dp-nav-item" href="#">🎯 Цели</a>
+                    <a class="dp-nav-item" href="#">🔔 Алерты</a>
+                    <a class="dp-nav-item" href="#">⚙️ Настройки</a>
+                </nav>
+            </div>
+            <div class="dp-main">
+                <div class="dp-topbar">
+                    <span class="dp-page-title" id="dp-page-title">Обзор · апрель 2026</span>
+                    <div class="dp-actions">
+                        <span class="dp-live"><span class="live-dot"></span>Live</span>
+                        <button class="dp-btn">+ Виджет</button>
+                        <button class="dp-btn dp-btn--primary">Поделиться</button>
+                    </div>
+                </div>
+                <div class="dp-kpis" id="dp-kpis">
+                    <div class="kpi-card">
+                        <span class="kpi-label">Выручка</span>
+                        <span class="kpi-val">₽4.8M</span>
+                        <span class="kpi-delta up">↑ 23%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Пользователи</span>
+                        <span class="kpi-val">142K</span>
+                        <span class="kpi-delta up">↑ 11%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">Конверсия</span>
+                        <span class="kpi-val">8.7%</span>
+                        <span class="kpi-delta down">↓ 0.3%</span>
+                    </div>
+                    <div class="kpi-card">
+                        <span class="kpi-label">MRR</span>
+                        <span class="kpi-val">₽890K</span>
+                        <span class="kpi-delta up">↑ 34%</span>
+                    </div>
+                </div>
+                <div class="dp-charts">
+                    <div class="dp-chart-main">
+                        <div class="dpc-header">
+                            <span>Динамика выручки</span>
+                            <div class="dpc-legend">
+                                <span class="leg--purple">Факт</span>
+                                <span class="leg--cyan">План</span>
+                            </div>
+                        </div>
+                        <canvas id="dp-main-chart" width="480" height="160"></canvas>
+                    </div>
+                    <div class="dp-chart-side">
+                        <div class="dpc-header"><span>Каналы трафика</span></div>
+                        <canvas id="dp-donut" width="180" height="180"></canvas>
+                        <div class="donut-legend" id="donut-legend"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- INTEGRATIONS -->
+<section class="integrations section" id="integrations">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Интеграции</span>
+            <h2 class="section-title">Подключите<br><span class="gradient-text">любой источник</span></h2>
+            <p>200+ готовых коннекторов. Если нужного нет — подключитесь через API или Webhook за 5 минут.</p>
+        </div>
+        <div class="integrations-marquee">
+            <div class="marquee-track" id="marquee-track">
+                <!-- filled by JS -->
+            </div>
+        </div>
+        <div class="integrations-cta">
+            <a href="#" class="btn btn-ghost">Все интеграции →</a>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing section" id="pricing">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Тарифы</span>
+            <h2 class="section-title">Прозрачные цены<br><span class="gradient-text">без скрытых платежей</span></h2>
+        </div>
+        <div class="pricing-toggle" id="pricing-toggle">
+            <button class="ptog active" data-period="monthly">Помесячно</button>
+            <button class="ptog" data-period="yearly">Ежегодно <span class="save-badge">−20%</span></button>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card reveal">
+                <div class="pc-top">
+                    <span class="pc-name">Starter</span>
+                    <div class="pc-price">
+                        <span class="pc-amount" data-monthly="0" data-yearly="0">₽0</span>
+                        <span class="pc-period">/мес</span>
+                    </div>
+                    <span class="pc-desc">Для небольших проектов и тестирования</span>
+                </div>
+                <ul class="pc-features">
+                    <li>✓ До 3 дашбордов</li>
+                    <li>✓ 5 источников данных</li>
+                    <li>✓ 100K событий/мес</li>
+                    <li>✓ 1 пользователь</li>
+                    <li class="dim">✗ AI-аномалии</li>
+                    <li class="dim">✗ Алерты</li>
+                </ul>
+                <a href="#" class="btn btn-ghost btn-full">Начать бесплатно</a>
+            </div>
+            <div class="price-card price-card--featured reveal">
+                <div class="pc-badge">Популярный</div>
+                <div class="pc-top">
+                    <span class="pc-name">Pro</span>
+                    <div class="pc-price">
+                        <span class="pc-amount" data-monthly="4900" data-yearly="3920">₽4 900</span>
+                        <span class="pc-period">/мес</span>
+                    </div>
+                    <span class="pc-desc">Для растущих команд и стартапов</span>
+                </div>
+                <ul class="pc-features">
+                    <li>✓ Неограниченно дашбордов</li>
+                    <li>✓ 50 источников данных</li>
+                    <li>✓ 10M событий/мес</li>
+                    <li>✓ До 10 пользователей</li>
+                    <li>✓ AI-аномалии</li>
+                    <li>✓ Алерты (Slack, TG, email)</li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-full">Попробовать 14 дней</a>
+            </div>
+            <div class="price-card reveal">
+                <div class="pc-top">
+                    <span class="pc-name">Enterprise</span>
+                    <div class="pc-price">
+                        <span class="pc-amount" data-monthly="custom" data-yearly="custom">По запросу</span>
+                    </div>
+                    <span class="pc-desc">Для корпораций с особыми требованиями</span>
+                </div>
+                <ul class="pc-features">
+                    <li>✓ Всё из Pro</li>
+                    <li>✓ Неограниченные события</li>
+                    <li>✓ On-premise деплой</li>
+                    <li>✓ Выделенный менеджер</li>
+                    <li>✓ SLA 99.99%</li>
+                    <li>✓ SOC 2 / GDPR / ISO 27001</li>
+                </ul>
+                <a href="#" class="btn btn-ghost btn-full">Связаться с нами</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq section" id="faq">
+    <div class="container faq-inner">
+        <div class="faq-text reveal">
+            <span class="section-tag">FAQ</span>
+            <h2 class="section-title">Часто<br>задаваемые<br><span class="gradient-text">вопросы</span></h2>
+            <p>Остались вопросы? Наша команда поддержки отвечает за 2 минуты в рабочее время.</p>
+            <a href="#" class="btn btn-ghost" style="margin-top:24px">Написать в поддержку →</a>
+        </div>
+        <div class="faq-list reveal">
+            <div class="faq-item" data-open="false">
+                <button class="faq-q">
+                    Нужны ли технические знания для настройки?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-a">
+                    <p>Нет. No-code интерфейс позволяет подключить источник данных и создать дашборд без единой строки кода. Для нестандартных сценариев есть подробная документация и команда Customer Success.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-open="false">
+                <button class="faq-q">
+                    Как работает 14-дневный пробный период?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-a">
+                    <p>Вы получаете полный доступ к тарифу Pro без ограничений. Карта не требуется. После 14 дней аккаунт автоматически переходит на Starter (бесплатный).</p>
+                </div>
+            </div>
+            <div class="faq-item" data-open="false">
+                <button class="faq-q">
+                    Где хранятся мои данные?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-a">
+                    <p>По умолчанию данные хранятся в дата-центрах в России (Tier IV). Enterprise-клиенты могут выбрать on-premise деплой или собственное облако.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-open="false">
+                <button class="faq-q">
+                    Можно ли интегрировать с нашей BI-системой?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-a">
+                    <p>Да. PULSE предоставляет REST API и GraphQL. Встроенные коннекторы для Power BI, Tableau, Metabase, Looker. Данные доступны в SQL через семантический слой.</p>
+                </div>
+            </div>
+            <div class="faq-item" data-open="false">
+                <button class="faq-q">
+                    Как быстро обновляются данные?
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-a">
+                    <p>Streaming-источники — задержка 4 мс. Batch-источники обновляются каждые 5–60 минут (настраивается). Real-time WebSocket push для live-дашбордов.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <div class="cta-glow"></div>
+    <div class="container cta-inner">
+        <h2 class="cta-title">Готовы видеть данные<br><span class="gradient-text">в реальном времени?</span></h2>
+        <p class="cta-desc">Подключитесь за 5 минут. Первые инсайты — в первый день.</p>
+        <div class="cta-form" id="cta-form-wrap">
+            <form class="inline-form" id="cta-form">
+                <input type="email" id="cta-email" placeholder="ваш@email.ru" required>
+                <button type="submit" class="btn btn-primary">Начать бесплатно →</button>
+            </form>
+            <span class="cta-note">Карта не нужна · 14 дней Pro бесплатно</span>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <span class="footer-logo"><span class="logo-icon">⚡</span>PULSE</span>
+            <p>Аналитическая платформа<br>нового поколения</p>
+            <div class="footer-social">
+                <a href="#">TG</a><a href="#">VK</a><a href="#">GH</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <strong>Продукт</strong>
+            <a href="#">Возможности</a>
+            <a href="#">Тарифы</a>
+            <a href="#">Дорожная карта</a>
+            <a href="#">Changelog</a>
+        </div>
+        <div class="footer-col">
+            <strong>Разработчикам</strong>
+            <a href="#">API Docs</a>
+            <a href="#">SDK</a>
+            <a href="#">Webhooks</a>
+            <a href="#">Статус системы</a>
+        </div>
+        <div class="footer-col">
+            <strong>Компания</strong>
+            <a href="#">О нас</a>
+            <a href="#">Блог</a>
+            <a href="#">Карьера</a>
+            <a href="#">Контакты</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <span>© 2025 PULSE Analytics. Все права защищены.</span>
+            <span><a href="#">Политика конфиденциальности</a> · <a href="#">Условия использования</a></span>
+        </div>
+    </div>
+</footer>
+
+<!-- Success toast -->
+<div class="toast" id="toast">
+    <span class="toast-icon">✅</span>
+    <span id="toast-msg">Отлично! Проверьте почту.</span>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
