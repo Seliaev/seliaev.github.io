@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS — Криптовалютная платформа нового поколения</title>
+    <meta name="description" content="NEXUS — торгуйте криптовалютой с ИИ-аналитикой, нулевыми комиссиями и мгновенными транзакциями.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Фоновые частицы -->
+<canvas id="stars-canvas" class="stars-canvas"></canvas>
+
+<!-- Шапка -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="#" class="logo">NEX<span>US</span></a>
+        <nav class="nav" id="nav">
+            <a href="#features" class="nav-link">Возможности</a>
+            <a href="#chart" class="nav-link">Рынок</a>
+            <a href="#how" class="nav-link">Как это работает</a>
+            <a href="#roadmap" class="nav-link">Дорожная карта</a>
+        </nav>
+        <div class="header-actions">
+            <a href="#" class="btn btn-ghost">Войти</a>
+            <a href="#cta" class="btn btn-glow">Начать</a>
+        </div>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<!-- Тикер цен -->
+<div class="ticker-wrap">
+    <div class="ticker" id="ticker"></div>
+</div>
+
+<main>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-glow hero-glow--1"></div>
+    <div class="hero-glow hero-glow--2"></div>
+    <div class="container hero-content">
+        <div class="hero-badge">
+            <span class="hero-badge-dot"></span>
+            Платформа нового поколения · Web3
+        </div>
+        <h1 class="hero-title">
+            Торгуй крипто<br>
+            <span class="gradient-text">без границ</span>
+        </h1>
+        <p class="hero-desc">ИИ-аналитика в реальном времени, нулевые комиссии на первые 30 дней и мгновенные транзакции по всему миру.</p>
+        <div class="hero-cta">
+            <a href="#cta" class="btn btn-glow btn-lg">Создать аккаунт</a>
+            <a href="#chart" class="btn btn-outline btn-lg">Смотреть рынок →</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-val" data-target="2400000">0</span>
+                <span class="hero-stat-label">Пользователей</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-val" data-target="180" data-prefix="$" data-suffix="B">0</span>
+                <span class="hero-stat-label">Объём торгов</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-val" data-target="340" data-suffix="+">0</span>
+                <span class="hero-stat-label">Монет</span>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-val" data-target="99.9" data-suffix="%" data-decimals="1">0</span>
+                <span class="hero-stat-label">Uptime</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <div class="hero-card glass">
+            <div class="hcard-header">
+                <span class="hcard-coin">₿ Bitcoin</span>
+                <span class="hcard-change up">+3.24%</span>
+            </div>
+            <div class="hcard-price">$67,420.50</div>
+            <canvas id="mini-chart" width="260" height="70"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- Функции -->
+<section class="features section" id="features">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Возможности</span>
+            <h2 class="section-title">Всё для профессиональной торговли</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card glass reveal">
+                <div class="fc-icon fc-icon--blue">⚡</div>
+                <h3>Мгновенные сделки</h3>
+                <p>Исполнение ордеров за &lt;50 мс благодаря собственному движку на Rust. Никаких зависаний в волатильный рынок.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="fc-icon fc-icon--purple">🤖</div>
+                <h3>ИИ-аналитика</h3>
+                <p>Нейросеть анализирует 500+ индикаторов и формирует персональные торговые сигналы с точностью 78%.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="fc-icon fc-icon--cyan">🛡️</div>
+                <h3>Холодное хранение</h3>
+                <p>98% средств хранится в холодных кошельках. Страхование до $250,000. Аудит раз в квартал.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="fc-icon fc-icon--green">📊</div>
+                <h3>Продвинутые графики</h3>
+                <p>TradingView-совместимые графики с 100+ индикаторами. Мультитаймфреймовый анализ.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="fc-icon fc-icon--orange">🌐</div>
+                <h3>DeFi интеграция</h3>
+                <p>Прямой доступ к Uniswap, Curve, Aave. Фарминг и стейкинг прямо с платформы.</p>
+            </div>
+            <div class="feature-card glass reveal">
+                <div class="fc-icon fc-icon--pink">💳</div>
+                <h3>Крипто-карта</h3>
+                <p>Виртуальная Visa с автоконвертацией. Тратьте крипту как фиат в 50M+ точек мира.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Рынок / Чарт -->
+<section class="chart-section section" id="chart">
+    <div class="container">
+        <div class="section-head">
+            <span class="section-tag">Рынок</span>
+            <h2 class="section-title">Топ активы прямо сейчас</h2>
+        </div>
+        <div class="market-table glass">
+            <div class="market-table-head">
+                <span>#</span>
+                <span>Монета</span>
+                <span>Цена</span>
+                <span>24ч</span>
+                <span>Капитал.</span>
+                <span>График</span>
+            </div>
+            <div class="market-rows" id="market-rows"></div>
+        </div>
+        <div class="chart-full glass reveal">
+            <div class="chart-controls">
+                <span class="chart-coin-name">₿ BTC / USDT</span>
+                <div class="chart-periods">
+                    <button class="cp active" data-period="1D">1Д</button>
+                    <button class="cp" data-period="1W">1Н</button>
+                    <button class="cp" data-period="1M">1М</button>
+                    <button class="cp" data-period="1Y">1Г</button>
+                </div>
+            </div>
+            <canvas id="main-chart" height="220"></canvas>
+        </div>
+    </div>
+</section>
+
+<!-- Как это работает -->
+<section class="how section" id="how">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Процесс</span>
+            <h2 class="section-title">Три шага до первой сделки</h2>
+        </div>
+        <div class="how-steps">
+            <div class="how-step reveal">
+                <div class="step-num">01</div>
+                <div class="step-body">
+                    <h3>Регистрация за 2 минуты</h3>
+                    <p>Email + верификация личности по паспорту. Без бумаг, всё онлайн. KYC-проверка за 10 секунд.</p>
+                </div>
+            </div>
+            <div class="how-line"></div>
+            <div class="how-step reveal">
+                <div class="step-num">02</div>
+                <div class="step-body">
+                    <h3>Пополните счёт</h3>
+                    <p>Карта, P2P, SWIFT, крипто-перевод. Минимальный депозит — $10. Пополнение без комиссии.</p>
+                </div>
+            </div>
+            <div class="how-line"></div>
+            <div class="how-step reveal">
+                <div class="step-num">03</div>
+                <div class="step-body">
+                    <h3>Торгуйте и зарабатывайте</h3>
+                    <p>Spot, фьючерсы, опционы. Используйте ИИ-сигналы или настройте автоматического торгового бота.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Дорожная карта -->
+<section class="roadmap section" id="roadmap">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Roadmap</span>
+            <h2 class="section-title">Путь развития NEXUS</h2>
+        </div>
+        <div class="roadmap-grid">
+            <div class="rm-card glass done reveal">
+                <div class="rm-quarter">Q1 2024 <span class="rm-status">✓ Готово</span></div>
+                <ul>
+                    <li>Запуск beta-платформы</li>
+                    <li>Spot-торговля 50 монет</li>
+                    <li>Мобильное приложение iOS</li>
+                </ul>
+            </div>
+            <div class="rm-card glass done reveal">
+                <div class="rm-quarter">Q3 2024 <span class="rm-status">✓ Готово</span></div>
+                <ul>
+                    <li>Фьючерсы с плечом x100</li>
+                    <li>ИИ-сигналы v1.0</li>
+                    <li>Крипто-карта Visa</li>
+                </ul>
+            </div>
+            <div class="rm-card glass active reveal">
+                <div class="rm-quarter">Q2 2025 <span class="rm-status rm-status--active">⟳ Сейчас</span></div>
+                <ul>
+                    <li>DeFi-интеграция</li>
+                    <li>NFT-маркетплейс</li>
+                    <li>Токен NXS TGE</li>
+                </ul>
+            </div>
+            <div class="rm-card glass reveal">
+                <div class="rm-quarter">Q4 2025 <span class="rm-status rm-status--future">◯ Скоро</span></div>
+                <ul>
+                    <li>Собственная L2 сеть</li>
+                    <li>ИИ-трейдинг-боты v3</li>
+                    <li>Институциональные API</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section section" id="cta">
+    <div class="cta-glow"></div>
+    <div class="container">
+        <div class="cta-box glass reveal">
+            <h2 class="section-title">Начните торговать сегодня</h2>
+            <p>Зарегистрируйтесь и получите 30 дней без комиссий + бонус $50 на первый депозит.</p>
+            <form class="cta-form" id="cta-form">
+                <input type="email" id="cta-email" placeholder="Введите ваш email" required>
+                <button type="submit" class="btn btn-glow">Создать аккаунт</button>
+            </form>
+            <span class="cta-hint">Уже 2,4 млн пользователей. Без скрытых платежей.</span>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <a href="#" class="footer-logo">NEX<span>US</span></a>
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Комиссии</a>
+            <a href="#">API</a>
+            <a href="#">Безопасность</a>
+            <a href="#">Блог</a>
+        </div>
+        <p class="footer-legal">© 2025 NEXUS Technologies Ltd. Торговля криптовалютой сопряжена с рисками.</p>
+    </div>
+</footer>
+
+<!-- Модалка -->
+<div class="modal" id="modal">
+    <div class="modal-box glass">
+        <button class="modal-close" id="modal-close">×</button>
+        <div class="modal-icon">🚀</div>
+        <h3>Добро пожаловать в NEXUS!</h3>
+        <p>Подтверждение отправлено на вашу почту. Проверьте входящие и активируйте аккаунт.</p>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
