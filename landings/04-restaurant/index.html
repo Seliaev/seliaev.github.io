@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUSTO — Ресторан авторской кухни</title>
+    <meta name="description" content="GUSTO — ресторан авторской кухни в сердце города. Бронирование столика онлайн, живая музыка, сомелье.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="header" id="header">
+    <div class="container header-inner">
+        <a href="#" class="logo">
+            <span class="logo-g">G</span>USTO
+        </a>
+        <nav class="nav" id="nav">
+            <a href="#menu" class="nav-link">Меню</a>
+            <a href="#about" class="nav-link">О нас</a>
+            <a href="#gallery" class="nav-link">Галерея</a>
+            <a href="#reviews" class="nav-link">Отзывы</a>
+            <a href="#reserve" class="nav-link">Бронирование</a>
+        </nav>
+        <a href="#reserve" class="btn btn-gold header-btn">Забронировать</a>
+        <button class="burger" id="burger" aria-label="Меню">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+    <div class="hero-bg">
+        <div class="hero-plate">🍽️</div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+        <span class="hero-eyebrow">Авторская кухня · Живая музыка · Fine Dining</span>
+        <h1 class="hero-title">
+            Где каждый ужин —<br>
+            <em>произведение искусства</em>
+        </h1>
+        <p class="hero-desc">Шеф Алексей Воронов создаёт блюда, вдохновлённые сезонными продуктами региона и традициями трёх континентов.</p>
+        <div class="hero-actions">
+            <a href="#reserve" class="btn btn-gold btn-lg">Забронировать стол</a>
+            <a href="#menu" class="btn btn-outline-gold btn-lg">Посмотреть меню</a>
+        </div>
+        <div class="hero-awards">
+            <div class="award">
+                <span class="award-icon">⭐</span>
+                <span>Michelin Guide 2024</span>
+            </div>
+            <div class="award-sep"></div>
+            <div class="award">
+                <span class="award-icon">🏆</span>
+                <span>Лучший ресторан города</span>
+            </div>
+            <div class="award-sep"></div>
+            <div class="award">
+                <span class="award-icon">🍷</span>
+                <span>Wine Spectator Award</span>
+            </div>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span>Прокрутите вниз</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-bar">
+    <div class="container stats-inner">
+        <div class="stat">
+            <span class="stat-num" data-target="12">0</span>
+            <span class="stat-label">лет на рынке</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+            <span class="stat-num" data-target="340">0</span>
+            <span class="stat-label">блюд в сезоне</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+            <span class="stat-num" data-target="50000">0</span>
+            <span class="stat-label">довольных гостей</span>
+        </div>
+        <div class="stat-div"></div>
+        <div class="stat">
+            <span class="stat-num" data-target="98" data-suffix="%">0</span>
+            <span class="stat-label">рекомендуют друзьям</span>
+        </div>
+    </div>
+</section>
+
+<!-- MENU -->
+<section class="menu section" id="menu">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Меню</span>
+            <h2 class="section-title">Авторские блюда сезона</h2>
+            <p>Меню меняется каждый сезон — шеф выбирает только свежие локальные продукты.</p>
+        </div>
+        <div class="menu-tabs" id="menu-tabs">
+            <button class="mtab active" data-cat="starters">Закуски</button>
+            <button class="mtab" data-cat="mains">Горячее</button>
+            <button class="mtab" data-cat="desserts">Десерты</button>
+            <button class="mtab" data-cat="wine">Вина</button>
+        </div>
+        <div class="menu-grid" id="menu-grid"></div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section" id="about">
+    <div class="container about-inner">
+        <div class="about-visual reveal">
+            <div class="chef-card">
+                <div class="chef-photo">👨‍🍳</div>
+                <div class="chef-info">
+                    <span class="chef-name">Алексей Воронов</span>
+                    <span class="chef-title">Шеф-повар · 20 лет опыта</span>
+                </div>
+            </div>
+            <div class="about-decor">
+                <div class="decor-circle decor-circle--1"></div>
+                <div class="decor-circle decor-circle--2"></div>
+            </div>
+        </div>
+        <div class="about-text reveal">
+            <span class="section-tag">История</span>
+            <h2 class="section-title">Вкус, рождённый<br><em>из страсти</em></h2>
+            <p>GUSTO открылся в 2012 году как небольшой гастробар, но быстро стал символом кулинарного совершенства. Шеф Воронов прошёл стажировку у Феррана Адриа в elBulli и в ресторанах Токио, Лиссабона и Копенгагена.</p>
+            <p>Каждое блюдо — это история о месте, сезоне и эмоции. Мы верим, что еда должна удивлять, трогать и запоминаться.</p>
+            <div class="about-features">
+                <div class="af-item">
+                    <span class="af-icon">🌿</span>
+                    <div>
+                        <strong>Локальные продукты</strong>
+                        <span>Фермеры в 100 км от города</span>
+                    </div>
+                </div>
+                <div class="af-item">
+                    <span class="af-icon">🍷</span>
+                    <div>
+                        <strong>Винная карта</strong>
+                        <span>400+ позиций, 18 стран</span>
+                    </div>
+                </div>
+                <div class="af-item">
+                    <span class="af-icon">🎵</span>
+                    <div>
+                        <strong>Живая музыка</strong>
+                        <span>Пт–Вс, с 20:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section section" id="gallery">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Атмосфера</span>
+            <h2 class="section-title">Взгляд внутрь GUSTO</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item gi--large reveal">
+                <div class="gi-bg gi-bg--1"></div>
+                <span class="gi-label">Главный зал</span>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gi-bg gi-bg--2"></div>
+                <span class="gi-label">Тартар из тунца</span>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gi-bg gi-bg--3"></div>
+                <span class="gi-label">Приватный кабинет</span>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gi-bg gi-bg--4"></div>
+                <span class="gi-label">Фуа-гра с трюфелем</span>
+            </div>
+            <div class="gallery-item reveal">
+                <div class="gi-bg gi-bg--5"></div>
+                <span class="gi-label">Открытая кухня</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews section" id="reviews">
+    <div class="container">
+        <div class="section-head center">
+            <span class="section-tag">Отзывы</span>
+            <h2 class="section-title">Что говорят наши гости</h2>
+        </div>
+        <div class="reviews-grid">
+            <div class="review-card reveal">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">«Невероятный опыт. Дегустационное меню из 7 блюд — каждое удивляло. Сомелье подобрал вина идеально. Уже планируем следующий визит.»</p>
+                <div class="review-author">
+                    <div class="review-avatar" style="background: linear-gradient(135deg, #c9a84c, #8b5e1a)">МС</div>
+                    <div>
+                        <strong>Михаил Семёнов</strong>
+                        <span>Постоянный гость</span>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card reveal">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">«Отмечали годовщину свадьбы. Персонал заранее украсил стол, принесли комплимент от шефа. Атмосфера и еда на высшем уровне — рекомендую всем!»</p>
+                <div class="review-author">
+                    <div class="review-avatar" style="background: linear-gradient(135deg, #8b5cf6, #4c1d95)">АК</div>
+                    <div>
+                        <strong>Анна Козлова</strong>
+                        <span>Tripadvisor, 2024</span>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card reveal">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">«Бронировал корпоратив на 20 человек. Менеджер Ирина была с нами на связи весь вечер. Кухня не подвела ни разу. Буду рекомендовать партнёрам.»</p>
+                <div class="review-author">
+                    <div class="review-avatar" style="background: linear-gradient(135deg, #10b981, #065f46)">ДП</div>
+                    <div>
+                        <strong>Дмитрий Павлов</strong>
+                        <span>Google Reviews</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve section" id="reserve">
+    <div class="reserve-overlay"></div>
+    <div class="container reserve-inner">
+        <div class="reserve-text reveal">
+            <span class="section-tag">Бронирование</span>
+            <h2 class="section-title">Зарезервируйте<br><em>ваш вечер</em></h2>
+            <p>Столик ждёт вас. Укажите дату, время и количество гостей — мы подтвердим бронирование в течение часа.</p>
+            <div class="reserve-info">
+                <div class="ri-item">
+                    <span class="ri-icon">📍</span>
+                    <span>ул. Гастрономическая, 12</span>
+                </div>
+                <div class="ri-item">
+                    <span class="ri-icon">🕐</span>
+                    <span>Пн–Чт 18:00–23:00 · Пт–Вс 17:00–01:00</span>
+                </div>
+                <div class="ri-item">
+                    <span class="ri-icon">📞</span>
+                    <span>+7 (800) 123-45-67</span>
+                </div>
+            </div>
+        </div>
+        <form class="reserve-form reveal" id="reserve-form">
+            <h3>Забронировать столик</h3>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="res-name">Имя</label>
+                    <input type="text" id="res-name" placeholder="Ваше имя" required>
+                </div>
+                <div class="form-group">
+                    <label for="res-phone">Телефон</label>
+                    <input type="tel" id="res-phone" placeholder="+7 (___) ___-__-__" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="res-date">Дата</label>
+                    <input type="date" id="res-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="res-time">Время</label>
+                    <select id="res-time" required>
+                        <option value="">Выберите время</option>
+                        <option>18:00</option><option>18:30</option>
+                        <option>19:00</option><option>19:30</option>
+                        <option>20:00</option><option>20:30</option>
+                        <option>21:00</option><option>21:30</option>
+                        <option>22:00</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Количество гостей</label>
+                <div class="guests-picker">
+                    <button type="button" id="guests-minus">−</button>
+                    <span id="guests-count">2</span>
+                    <button type="button" id="guests-plus">+</button>
+                    <span class="guests-label">гостя</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="res-wishes">Особые пожелания</label>
+                <textarea id="res-wishes" placeholder="Аллергии, декор стола, детское меню..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-gold btn-full">Подтвердить бронирование</button>
+        </form>
+    </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container footer-inner">
+        <div class="footer-brand">
+            <span class="footer-logo"><span class="logo-g">G</span>USTO</span>
+            <p>Ресторан авторской кухни<br>с 2012 года</p>
+        </div>
+        <div class="footer-nav">
+            <strong>Навигация</strong>
+            <a href="#menu">Меню</a>
+            <a href="#about">О нас</a>
+            <a href="#gallery">Галерея</a>
+            <a href="#reviews">Отзывы</a>
+            <a href="#reserve">Бронирование</a>
+        </div>
+        <div class="footer-nav">
+            <strong>Контакты</strong>
+            <span>ул. Гастрономическая, 12</span>
+            <span>+7 (800) 123-45-67</span>
+            <span>info@gusto-rest.ru</span>
+        </div>
+        <div class="footer-social">
+            <strong>Мы в соцсетях</strong>
+            <div class="social-links">
+                <a href="#" class="social-link">Instagram</a>
+                <a href="#" class="social-link">VK</a>
+                <a href="#" class="social-link">Telegram</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">© 2025 GUSTO. Все права защищены.</div>
+    </div>
+</footer>
+
+<!-- Модалка -->
+<div class="modal" id="modal">
+    <div class="modal-box">
+        <button class="modal-close" id="modal-close">×</button>
+        <div class="modal-icon">🥂</div>
+        <h3>Бронирование подтверждено!</h3>
+        <p>Мы свяжемся с вами в течение часа для подтверждения. Ждём вас в GUSTO!</p>
+        <a href="#" class="btn btn-gold" id="modal-ok">Отлично!</a>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
