@@ -295,8 +295,7 @@ const GH_REPO_KEY  = 'portfolio_gh_repo';
 function populateSettings() {
   const s = D.settings || {};
   const el = id => document.getElementById(id);
-  if (el('s-tg-token'))   el('s-tg-token').value   = s.tgBotToken || '';
-  if (el('s-tg-chat-id')) el('s-tg-chat-id').value = s.tgChatId   || '';
+  if (el('s-worker-url')) el('s-worker-url').value = s.workerUrl || '';
   if (el('s-gh-token'))   el('s-gh-token').value   = localStorage.getItem(GH_TOKEN_KEY) || '';
   if (el('s-gh-repo'))    el('s-gh-repo').value    = localStorage.getItem(GH_REPO_KEY)  || 'Seliaev/seliaev.github.io';
 }
@@ -304,8 +303,7 @@ function populateSettings() {
 function collectSettings() {
   D.settings = D.settings || {};
   const el = id => document.getElementById(id);
-  if (el('s-tg-token'))   D.settings.tgBotToken = el('s-tg-token').value.trim();
-  if (el('s-tg-chat-id')) D.settings.tgChatId   = el('s-tg-chat-id').value.trim();
+  if (el('s-worker-url')) D.settings.workerUrl = el('s-worker-url').value.trim();
   // GitHub credentials saved separately (not in data.js — never pushed to repo)
   if (el('s-gh-token') && el('s-gh-token').value.trim()) localStorage.setItem(GH_TOKEN_KEY, el('s-gh-token').value.trim());
   if (el('s-gh-repo')  && el('s-gh-repo').value.trim())  localStorage.setItem(GH_REPO_KEY,  el('s-gh-repo').value.trim());
