@@ -337,7 +337,7 @@ const DEFAULT_DATA = {
       "badge": "Сайт",
       "badgeColor": "",
       "time": "14",
-      "emoji": "",
+      "emoji": "💻",
       "image": "",
       "bgGradient": "",
       "tags": [
