@@ -115,18 +115,19 @@
 
         <div class="form-group full">
           <hr style="border-color:var(--border);margin:16px 0">
-          <h3 style="margin-bottom:4px">📨 Telegram-уведомления о заявках</h3>
+          <h3 style="margin-bottom:4px">📨 Уведомления о заявках (Cloudflare Worker)</h3>
           <p style="font-size:13px;color:var(--muted);margin-bottom:12px">
-            Заявки с формы сайта будут приходить в Telegram.<br>
-            1. Создайте бота у <strong>@BotFather</strong> → получите токен.<br>
-            2. Напишите боту <code>/start</code>.<br>
-            3. Откройте <code>api.telegram.org/bot{TOKEN}/getUpdates</code> → возьмите <code>chat.id</code>.
+            Заявки с формы приходят в Telegram через защищённый прокси-сервер.<br>
+            Токен бота хранится на сервере Cloudflare — посетители сайта его не видят.<br>
+            Вставьте URL вашего Worker (например: <code>https://portfolio-notify.xxx.workers.dev</code>).
           </p>
         </div>
-        <div class="form-group"><label>Bot Token</label><input id="s-tg-token" type="text" placeholder="1234567890:ABCdef..."></div>
-        <div class="form-group"><label>Chat ID (ваш)</label><input id="s-tg-chat-id" type="text" placeholder="123456789"></div>
+        <div class="form-group full">
+          <label>🔗 Worker URL</label>
+          <input id="s-worker-url" type="text" placeholder="https://portfolio-notify.xxx.workers.dev">
+        </div>
         <div class="form-group full" style="color:var(--muted);font-size:12px">
-          ℹ️ Токен и Chat ID сохраняются только в вашем браузере (localStorage). Не публикуйте HTML с этими данными в открытый репозиторий.
+          ℹ️ URL Worker публикуется в data.js — это безопасно. Сам токен Telegram хранится только в Cloudflare Secrets.
         </div>
 
         <div class="form-group full">
