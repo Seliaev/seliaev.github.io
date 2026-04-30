@@ -338,18 +338,27 @@ async function pushToGithub() {
  */
 const DEFAULT_DATA = ${json};
 
-function hashPassword(p) {
-  let h = 0;
-  for (let i = 0; i < p.length; i++) h = (Math.imul(31, h) + p.charCodeAt(i)) | 0;
-  return h.toString(36);
+function hashPassword(pass) {
+  try { return btoa(unescape(encodeURIComponent(pass))); }
+  catch (e) { return btoa(pass); }
 }
-function checkPassword(p, storedHash) {
-  return storedHash ? storedHash === hashPassword(p) : hashPassword(p) === hashPassword('admin');
+function checkPassword(input, stored) {
+  if (!stored) return hashPassword(input) === hashPassword('admin');
+  return hashPassword(input) === stored;
+}
+function deepMerge(target, source) {
+  const out = Object.assign({}, target);
+  for (const key of Object.keys(source)) {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+      out[key] = deepMerge(target[key] || {}, source[key]);
+    } else { out[key] = source[key]; }
+  }
+  return out;
 }
 function loadData() {
   try {
     const saved = localStorage.getItem('portfolio_data');
-    if (saved) { const parsed = JSON.parse(saved); return { ...DEFAULT_DATA, ...parsed }; }
+    if (saved) { const parsed = JSON.parse(saved); return deepMerge(DEFAULT_DATA, parsed); }
   } catch(e) { console.warn('localStorage parse error:', e); }
   return JSON.parse(JSON.stringify(DEFAULT_DATA));
 }
@@ -460,14 +469,22 @@ document.addEventListener('DOMContentLoaded', () => {
 const DEFAULT_DATA = ${json};
 
 // ── HELPERS ──────────────────────────────────────────────────────────
-function hashPassword(p) {
-  let h = 0;
-  for (let i = 0; i < p.length; i++) h = (Math.imul(31, h) + p.charCodeAt(i)) | 0;
-  return h.toString(36);
+function hashPassword(pass) {
+  try { return btoa(unescape(encodeURIComponent(pass))); }
+  catch (e) { return btoa(pass); }
 }
-function checkPassword(p) {
-  const stored = localStorage.getItem('portfolio_pass');
-  return stored ? stored === hashPassword(p) : hashPassword(p) === hashPassword('admin');
+function checkPassword(input, stored) {
+  if (!stored) return hashPassword(input) === hashPassword('admin');
+  return hashPassword(input) === stored;
+}
+function deepMerge(target, source) {
+  const out = Object.assign({}, target);
+  for (const key of Object.keys(source)) {
+    if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+      out[key] = deepMerge(target[key] || {}, source[key]);
+    } else { out[key] = source[key]; }
+  }
+  return out;
 }
 
 // ── LOAD / SAVE ──────────────────────────────────────────────────────
@@ -476,7 +493,7 @@ function loadData() {
     const saved = localStorage.getItem('portfolio_data');
     if (saved) {
       const parsed = JSON.parse(saved);
-      return { ...DEFAULT_DATA, ...parsed };
+      return deepMerge(DEFAULT_DATA, parsed);
     }
   } catch(e) { console.warn('localStorage parse error:', e); }
   return JSON.parse(JSON.stringify(DEFAULT_DATA));
