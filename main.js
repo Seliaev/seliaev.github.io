@@ -293,30 +293,29 @@ function initForm() {
     const service = form.querySelector('select')?.value || '';
     const message = form.querySelector('textarea')?.value || '';
 
-    const s = D.settings || {};
-    if (s.tgBotToken && s.tgChatId) {
-      const text = [
-        '📨 <b>Новая заявка с портфолио!</b>',
-        `👤 <b>Имя:</b> ${name}`,
-        `📞 <b>Контакт:</b> ${contact}`,
-        `🛠 <b>Услуга:</b> ${service}`,
-        `📝 <b>Описание:</b> ${message || '—'}`,
-        `⏰ ${new Date().toLocaleString('ru-RU')}`
-      ].join('\n');
+    // Шлём на Cloudflare Worker (прокси — токен скрыт на сервере, работает из РФ)
+    const workerUrl = (D.settings || {}).workerUrl || '';
+    if (workerUrl) {
       try {
-        await fetch(`https://api.telegram.org/bot${s.tgBotToken}/sendMessage`, {
+        const res = await fetch(workerUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: s.tgChatId, text, parse_mode: 'HTML' })
+          body: JSON.stringify({ name, contact, service, message })
         });
-      } catch (err) { console.warn('TG send error:', err); }
+        const json = await res.json();
+        if (!json.ok) console.error('Worker error:', json.error);
+      } catch (err) {
+        console.error('Worker send error:', err);
+      }
+    } else {
+      console.warn('workerUrl не задан в настройках. Уведомления не отправляются.');
     }
 
     setTimeout(() => {
       succ.classList.add('show'); form.reset();
       btn.textContent = 'Отправить заявку 🚀'; btn.disabled = false;
       setTimeout(() => succ.classList.remove('show'), 5000);
-    }, 800);
+    }, 400);
   });
 }
 
