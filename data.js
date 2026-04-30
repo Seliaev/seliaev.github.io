@@ -436,7 +436,7 @@ const DEFAULT_DATA = {
   ],
   "contacts": {
     "telegramHandle": "@fullafterstop",
-    "telegramUrl": "https://fullafterstop.t.me",
+    "telegramUrl": "https://t.me/fullafterstop",
     "githubHandle": "github.com/Seliaev",
     "githubUrl": "https://github.com/Seliaev",
     "email": "denis@selyaev.ru",
@@ -444,7 +444,7 @@ const DEFAULT_DATA = {
     "kworkLabel": "Профиль на Kwork"
   },
   "admin": {
-    "passwordHash": "MzYyNw=="
+    "passwordHash": "MzYyN1phUmE="
   },
   "settings": {
     "tgBotToken": "8060102934:AAG1yIiJ7qEniXXzSavt0OJlerDjpfFMK28",
