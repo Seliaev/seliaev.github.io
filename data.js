@@ -332,7 +332,7 @@ const DEFAULT_DATA = {
     {
       "id": "proj-1777561184607",
       "name": "Трекер успеваемости студентов",
-      "description": "Трекер успеваемости студентов",
+      "description": "Отслеживание прогресса обучения каждого отдельного студента по каждому отдельному модулю.\nСоздание pdf отчетов, как индивидуальных так и групповых.\nИИ-ассистент для анализа.",
       "category": "landing",
       "badge": "Сайт",
       "badgeColor": "",
@@ -340,7 +340,14 @@ const DEFAULT_DATA = {
       "emoji": "",
       "image": "",
       "bgGradient": "",
-      "tags": [],
+      "tags": [
+        "Next.JS",
+        "SQLite",
+        "ORM",
+        "Ubuntu",
+        "Nginx",
+        "AI"
+      ],
       "demoUrl": "",
       "githubUrl": "",
       "directUrl": "https://mainten.online/tracker",
