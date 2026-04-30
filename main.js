@@ -293,8 +293,12 @@ function initForm() {
     const service = form.querySelector('select')?.value || '';
     const message = form.querySelector('textarea')?.value || '';
 
-    // Шлём на Cloudflare Worker (прокси — токен скрыт на сервере, работает из РФ)
-    const workerUrl = (D.settings || {}).workerUrl || '';
+    const s           = D.settings || {};
+    const workerUrl   = s.workerUrl   || '';   // Cloudflare Worker (работает из РФ)
+    const tgToken     = s.tgBotToken  || '';   // прямой Telegram (работает вне РФ)
+    const tgChatId    = s.tgChatId    || '';
+
+    // ── 1. Cloudflare Worker (приоритет — токен скрыт, обходит блокировку РФ) ──
     if (workerUrl) {
       try {
         const res = await fetch(workerUrl, {
@@ -303,12 +307,23 @@ function initForm() {
           body: JSON.stringify({ name, contact, service, message })
         });
         const json = await res.json();
-        if (!json.ok) console.error('Worker error:', json.error);
+        if (json.ok) {
+          console.log('✅ Уведомление отправлено через Worker');
+        } else {
+          console.warn('⚠️ Worker error:', json.error);
+        }
       } catch (err) {
-        console.error('Worker send error:', err);
+        console.warn('Worker недоступен, пробуем прямой Telegram:', err.message);
+        // ── 2. Прямой Telegram API (fallback — для Саудии и других стран без блокировки) ──
+        if (tgToken && tgChatId) {
+          await sendDirectTelegram(tgToken, tgChatId, { name, contact, service, message });
+        }
       }
+    } else if (tgToken && tgChatId) {
+      // Worker не настроен — пробуем напрямую
+      await sendDirectTelegram(tgToken, tgChatId, { name, contact, service, message });
     } else {
-      console.warn('workerUrl не задан в настройках. Уведомления не отправляются.');
+      console.warn('Уведомления не настроены: нет workerUrl и нет tgBotToken/tgChatId');
     }
 
     setTimeout(() => {
@@ -318,6 +333,33 @@ function initForm() {
     }, 400);
   });
 }
+
+async function sendDirectTelegram(token, chatId, { name, contact, service, message }) {
+  const text = [
+    '📨 <b>Новая заявка с портфолио!</b>',
+    `👤 <b>Имя:</b> ${name}`,
+    `📞 <b>Контакт:</b> ${contact}`,
+    `🛠 <b>Услуга:</b> ${service}`,
+    `📝 <b>Описание:</b> ${message || '—'}`,
+    `⏰ ${new Date().toLocaleString('ru-RU')}`
+  ].join('\n');
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text, parse_mode: 'HTML' })
+    });
+    const json = await res.json();
+    if (json.ok) {
+      console.log('✅ Telegram уведомление отправлено напрямую');
+    } else {
+      console.error('❌ Telegram API error:', json.description);
+    }
+  } catch (err) {
+    console.error('❌ Прямой Telegram недоступен (заблокирован?):', err.message);
+  }
+}
+
 
 // ── NAV HIGHLIGHT ─────────────────────────────────────────────────
 /** Подсвечивает активный пункт навигации при прокрутке. */
