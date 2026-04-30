@@ -289,11 +289,16 @@ function changePassword() {
   ['s-old-pass','s-new-pass','s-new-pass2'].forEach(id => document.getElementById(id).value = '');
 }
 
+const GH_TOKEN_KEY = 'portfolio_gh_token';
+const GH_REPO_KEY  = 'portfolio_gh_repo';
+
 function populateSettings() {
   const s = D.settings || {};
   const el = id => document.getElementById(id);
   if (el('s-tg-token'))   el('s-tg-token').value   = s.tgBotToken || '';
   if (el('s-tg-chat-id')) el('s-tg-chat-id').value = s.tgChatId   || '';
+  if (el('s-gh-token'))   el('s-gh-token').value   = localStorage.getItem(GH_TOKEN_KEY) || '';
+  if (el('s-gh-repo'))    el('s-gh-repo').value    = localStorage.getItem(GH_REPO_KEY)  || 'Seliaev/seliaev.github.io';
 }
 
 function collectSettings() {
@@ -301,6 +306,88 @@ function collectSettings() {
   const el = id => document.getElementById(id);
   if (el('s-tg-token'))   D.settings.tgBotToken = el('s-tg-token').value.trim();
   if (el('s-tg-chat-id')) D.settings.tgChatId   = el('s-tg-chat-id').value.trim();
+  // GitHub credentials saved separately (not in data.js — never pushed to repo)
+  if (el('s-gh-token') && el('s-gh-token').value.trim()) localStorage.setItem(GH_TOKEN_KEY, el('s-gh-token').value.trim());
+  if (el('s-gh-repo')  && el('s-gh-repo').value.trim())  localStorage.setItem(GH_REPO_KEY,  el('s-gh-repo').value.trim());
+}
+
+// ── GITHUB PUSH ──────────────────────────────────────────────────
+async function pushToGithub() {
+  const token = localStorage.getItem(GH_TOKEN_KEY) || document.getElementById('s-gh-token')?.value.trim();
+  const repo  = localStorage.getItem(GH_REPO_KEY)  || document.getElementById('s-gh-repo')?.value.trim() || 'Seliaev/seliaev.github.io';
+  const msgEl = document.getElementById('pushMsg');
+  const btn   = document.getElementById('pushGithubBtn');
+
+  if (!token) { msgEl.textContent = '❌ Введите GitHub Token в поле выше'; msgEl.style.color='#ef4444'; return; }
+
+  // Save current settings first
+  saveAll();
+  if (el => el) {} // noop
+
+  btn.disabled = true;
+  msgEl.textContent = '⏳ Публикую...';
+  msgEl.style.color = 'var(--muted)';
+
+  // Build data.js content
+  const current = _P.loadData();
+  const json    = JSON.stringify(current, null, 2);
+  const content =
+`/**
+ * PORTFOLIO DATA — Denis Seliaev
+ * Управляется через /admin/
+ */
+const DEFAULT_DATA = ${json};
+
+function hashPassword(p) {
+  let h = 0;
+  for (let i = 0; i < p.length; i++) h = (Math.imul(31, h) + p.charCodeAt(i)) | 0;
+  return h.toString(36);
+}
+function checkPassword(p, storedHash) {
+  return storedHash ? storedHash === hashPassword(p) : hashPassword(p) === hashPassword('admin');
+}
+function loadData() {
+  try {
+    const saved = localStorage.getItem('portfolio_data');
+    if (saved) { const parsed = JSON.parse(saved); return { ...DEFAULT_DATA, ...parsed }; }
+  } catch(e) { console.warn('localStorage parse error:', e); }
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+function saveData(data) { localStorage.setItem('portfolio_data', JSON.stringify(data)); }
+window.PORTFOLIO = { loadData, saveData, hashPassword, checkPassword, DEFAULT_DATA };
+`;
+
+  try {
+    const apiBase = `https://api.github.com/repos/${repo}/contents/data.js`;
+    const headers = { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' };
+
+    // Get current SHA
+    const getRes = await fetch(apiBase, { headers });
+    if (!getRes.ok && getRes.status !== 404) throw new Error(`GitHub API: ${getRes.status}`);
+    const getJson = getRes.ok ? await getRes.json() : {};
+    const sha = getJson.sha || undefined;
+
+    // Push file
+    const encoded = btoa(unescape(encodeURIComponent(content)));
+    const body = { message: 'update: portfolio content via admin', content: encoded };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(apiBase, { method: 'PUT', headers, body: JSON.stringify(body) });
+    if (!putRes.ok) { const e = await putRes.json(); throw new Error(e.message || putRes.status); }
+
+    msgEl.textContent = '✅ Опубликовано! Сайт обновится через ~1-2 мин.';
+    msgEl.style.color = '#22c55e';
+
+    // Save token for next time
+    localStorage.setItem(GH_TOKEN_KEY, token);
+
+  } catch(err) {
+    msgEl.textContent = '❌ Ошибка: ' + err.message;
+    msgEl.style.color = '#ef4444';
+    console.error(err);
+  } finally {
+    btn.disabled = false;
+  }
 }
 
 // ── SAVE ALL ─────────────────────────────────────────────────────
@@ -356,5 +443,81 @@ document.addEventListener('DOMContentLoaded', () => {
       populateAll();
       showToast();
     }
+  });
+
+  document.getElementById('pushGithubBtn')?.addEventListener('click', pushToGithub);
+
+  // ── EXPORT data.js ──────────────────────────────────────────────
+  document.getElementById('exportDataBtn').addEventListener('click', () => {
+    const current = _P.loadData();
+    const json    = JSON.stringify(current, null, 2);
+    const content =
+`/**
+ * PORTFOLIO DATA — все содержимое сайта
+ * Правится через /admin/ или напрямую здесь.
+ * При наличии данных в localStorage они имеют приоритет.
+ */
+const DEFAULT_DATA = ${json};
+
+// ── HELPERS ──────────────────────────────────────────────────────────
+function hashPassword(p) {
+  let h = 0;
+  for (let i = 0; i < p.length; i++) h = (Math.imul(31, h) + p.charCodeAt(i)) | 0;
+  return h.toString(36);
+}
+function checkPassword(p) {
+  const stored = localStorage.getItem('portfolio_pass');
+  return stored ? stored === hashPassword(p) : hashPassword(p) === hashPassword('admin');
+}
+
+// ── LOAD / SAVE ──────────────────────────────────────────────────────
+function loadData() {
+  try {
+    const saved = localStorage.getItem('portfolio_data');
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { ...DEFAULT_DATA, ...parsed };
+    }
+  } catch(e) { console.warn('localStorage parse error:', e); }
+  return JSON.parse(JSON.stringify(DEFAULT_DATA));
+}
+function saveData(data) {
+  localStorage.setItem('portfolio_data', JSON.stringify(data));
+}
+
+window.PORTFOLIO = { loadData, saveData, hashPassword, checkPassword, DEFAULT_DATA };
+`;
+    const blob = new Blob([content], { type: 'text/javascript;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'data.js';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast();
+  });
+
+  // ── IMPORT data.js ──────────────────────────────────────────────
+  document.getElementById('importDataFile').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        // Extract JSON from DEFAULT_DATA = { ... }
+        const text  = ev.target.result;
+        const match = text.match(/const DEFAULT_DATA\s*=\s*(\{[\s\S]*?\});\s*\n/);
+        if (!match) { alert('Не удалось распознать формат data.js'); return; }
+        const parsed = JSON.parse(match[1]);
+        _P.saveData(parsed);
+        D = _P.loadData();
+        populateAll();
+        showToast();
+      } catch(err) {
+        alert('Ошибка импорта: ' + err.message);
+      }
+    };
+    reader.readAsText(file, 'UTF-8');
+    e.target.value = ''; // reset so same file can be re-imported
   });
 });
