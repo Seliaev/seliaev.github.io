@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Все работы Дениса Селяева — лендинги, Telegram и VK боты.">
+<title>Все работы — Денис Селяев</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Works page extras */
+  .works-hero {
+    padding: 120px 24px 60px;
+    text-align: center;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+  }
+  .works-back {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--muted); font-size: 14px; font-weight: 500;
+    margin-bottom: 32px; transition: color .2s;
+  }
+  .works-back:hover { color: var(--text); }
+  .works-hero h1 {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 900; margin-bottom: 16px;
+  }
+  .works-hero p { color: var(--muted); font-size: 17px; }
+  .works-count {
+    display: inline-block; margin-top: 12px;
+    background: rgba(99,102,241,0.12); border: 1px solid rgba(99,102,241,0.25);
+    color: var(--primary); font-size: 13px; font-weight: 600;
+    padding: 4px 16px; border-radius: 50px;
+  }
+  .works-section { padding: 60px 24px 100px; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html" id="navLogo">DS<span class="dot">.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Проекты</a></li>
+      <li><a href="index.html#services">Услуги</a></li>
+      <li><a href="index.html#stack">Стек</a></li>
+      <li><a href="index.html#contact">Контакты</a></li>
+    </ul>
+    <a class="btn btn-primary nav-cta" href="index.html#contact">Заказать проект</a>
+    <button class="burger" id="burger" aria-label="Меню">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#projects">Проекты</a>
+    <a href="index.html#services">Услуги</a>
+    <a href="index.html#stack">Стек</a>
+    <a href="index.html#contact">Контакты</a>
+    <a class="btn btn-primary" href="index.html#contact">Заказать проект</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="works-hero">
+  <a class="works-back" href="index.html">← На главную</a>
+  <h1 class="gradient-text">Все работы</h1>
+  <p>Лендинги, Telegram и VK боты — полный список проектов.</p>
+  <div class="works-count" id="worksCount">Загрузка...</div>
+</div>
+
+<!-- FILTER + GRID -->
+<section class="works-section">
+  <div class="container">
+    <div class="filter-tabs" id="filterTabs" style="margin-bottom:48px">
+      <button class="filter-btn active" data-filter="all">Все</button>
+      <button class="filter-btn" data-filter="landing">Лендинги</button>
+      <button class="filter-btn" data-filter="bot">Боты</button>
+    </div>
+    <div class="projects-grid" id="projectsGrid"></div>
+    <div style="text-align:center;margin-top:60px">
+      <a href="index.html#contact" class="btn btn-primary btn-lg">Обсудить проект 🚀</a>
+    </div>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script>
+// ── Works page renderer ──────────────────────────────────────────
+const D = window.PORTFOLIO.loadData();
+
+/** Рендерит логотип навбара из данных. */
+function renderLogo() {
+  const h = D.hero;
+  const text  = h.logoText  || 'DS.';
+  const image = h.logoImage || '';
+  const inner = image
+    ? `<img src="${image}" alt="${text}" style="height:36px;width:auto;display:block;">`
+    : `${text.replace(/\.$/, '')}<span class="dot">.</span>`;
+  document.querySelectorAll('.nav-logo').forEach(el => { el.innerHTML = inner; });
+}
+
+/**
+ * Создаёт DOM-карточку проекта.
+ * @param {object} p   - Данные проекта.
+ * @param {number} idx - Индекс анимации.
+ * @returns {HTMLElement}
+ */
+function buildCard(p, idx) {
+  const hasDirect = p.directUrl && p.directUrl.trim();
+  const hasDemo   = p.demoUrl   && p.demoUrl.trim();
+  const hasGithub = p.githubUrl && p.githubUrl.trim();
+
+  const primaryBtn = hasDirect
+    ? `<a href="${p.directUrl}" class="btn btn-primary btn-sm" target="_blank">${p.directLabel || 'Открыть →'}</a>`
+    : hasDemo
+      ? `<a href="${p.demoUrl}" class="btn btn-primary btn-sm" target="_blank">Демо →</a>`
+      : '';
+
+  const githubBtn = hasGithub
+    ? `<a href="${p.githubUrl}" class="btn btn-ghost btn-sm" target="_blank">GitHub</a>`
+    : '';
+
+  const imgContent = p.image
+    ? `<img src="${p.image}" alt="${p.name}" loading="lazy"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+       <div class="img-placeholder" style="background:${p.bgGradient};display:none">
+         <span>${p.emoji}</span><p>${p.name}</p>
+       </div>`
+    : `<div class="img-placeholder" style="background:${p.bgGradient}">
+         <span>${p.emoji}</span><p>${p.name}</p>
+       </div>`;
+
+  const card = document.createElement('div');
+  card.className = 'card project-card reveal';
+  card.dataset.cat = p.category;
+  card.dataset.id  = p.id;
+  card.innerHTML = `
+    <div class="card-preview">
+      ${imgContent}
+      <div class="card-badge" style="background:${p.badgeColor}">${p.badge}</div>
+      <div class="card-time">⚡ ${p.time}</div>
+    </div>
+    <div class="card-body">
+      <h3>${p.name}</h3>
+      <p>${p.description}</p>
+      <div class="tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+      <div class="card-actions">${primaryBtn}${githubBtn}</div>
+    </div>`;
+
+  setTimeout(() => card.classList.add('visible'), 50 * idx);
+  return card;
+}
+
+let activeFilter = 'all';
+
+/**
+ * Рендерит все видимые проекты с учётом фильтра.
+ * @param {string} [filter='all']
+ */
+function renderAll(filter) {
+  activeFilter = filter || 'all';
+  const grid = document.getElementById('projectsGrid');
+  grid.innerHTML = '';
+
+  const visible  = D.projects.filter(p => p.visible !== false);
+  const toRender = activeFilter === 'all'
+    ? visible
+    : visible.filter(p => p.category === activeFilter);
+
+  // Обновить счётчик
+  const countEl = document.getElementById('worksCount');
+  if (countEl) countEl.textContent = `${toRender.length} ${getNoun(toRender.length, 'проект', 'проекта', 'проектов')}`;
+
+  toRender.forEach((p, idx) => grid.appendChild(buildCard(p, idx)));
+
+  // Re-observe reveal items
+  initReveal();
+}
+
+/** Склонение числительных. */
+function getNoun(n, one, two, five) {
+  const mod10 = n % 10, mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return `${n} ${one}`;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return `${n} ${two}`;
+  return `${n} ${five}`;
+}
+
+/** Инициализирует фильтр. */
+function initFilter() {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderAll(btn.dataset.filter);
+    });
+  });
+}
+
+/** IntersectionObserver для .reveal элементов. */
+function initReveal() {
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
+}
+
+/** Навбар: скролл-класс + бургер. */
+function initNavbar() {
+  const nb     = document.getElementById('navbar');
+  const burger = document.getElementById('burger');
+  const menu   = document.getElementById('mobileMenu');
+  window.addEventListener('scroll', () => nb.classList.toggle('scrolled', scrollY > 40), { passive: true });
+  burger.addEventListener('click', () => menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.remove('open')));
+}
+
+// ── INIT ──────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderLogo();
+  renderAll('all');
+  initFilter();
+  initNavbar();
+});
+</script>
+</body>
+</html>

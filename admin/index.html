@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Admin — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">⚙️ Admin</div>
+    <h2>Вход в панель</h2>
+    <p class="login-sub">Введите пароль для доступа</p>
+    <div class="form-group">
+      <input type="password" id="loginPass" placeholder="Пароль" autofocus>
+    </div>
+    <button class="btn btn-primary btn-full" id="loginBtn">Войти</button>
+    <div class="login-error" id="loginError">Неверный пароль</div>
+
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<div id="adminPanel" class="admin-panel hidden">
+  <aside class="sidebar">
+    <div class="sidebar-logo">DS<span class="dot">.</span> Admin</div>
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-tab="projects">📁 Проекты</button>
+      <button class="nav-btn" data-tab="hero">🏠 Hero</button>
+      <button class="nav-btn" data-tab="services">💼 Услуги</button>
+      <button class="nav-btn" data-tab="stack">🛠 Стек</button>
+      <button class="nav-btn" data-tab="contacts">📬 Контакты</button>
+      <button class="nav-btn" data-tab="settings">🔒 Настройки</button>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="../index.html" target="_blank" class="btn-link">← Открыть сайт</a>
+      <button class="btn-link logout" id="logoutBtn">Выйти</button>
+    </div>
+  </aside>
+
+  <main class="admin-content">
+    <div class="topbar">
+      <h1 class="page-title" id="pageTitle">Проекты</h1>
+      <button class="btn btn-primary" id="saveBtn">💾 Сохранить</button>
+    </div>
+
+    <!-- PROJECTS TAB -->
+    <div class="tab-pane active" id="tab-projects">
+      <div class="tab-toolbar">
+        <button class="btn btn-primary" id="addProjectBtn">+ Добавить проект</button>
+      </div>
+      <div class="projects-list" id="projectsList"></div>
+    </div>
+
+    <!-- HERO TAB -->
+    <div class="tab-pane hidden" id="tab-hero">
+      <div class="field-grid">
+        <div class="form-group"><label>Заголовок (первая строка)</label><input id="h-title" type="text"></div>
+        <div class="form-group"><label>Заголовок (выделение)</label><input id="h-highlight" type="text"></div>
+        <div class="form-group full"><label>Подзаголовок</label><textarea id="h-sub" rows="3"></textarea></div>
+        <div class="form-group"><label>Бейдж «открыт»</label><input id="h-available-text" type="text"></div>
+        <div class="form-group"><label><input type="checkbox" id="h-available"> Показывать бейдж</label></div>
+        <div class="form-group"><label>Подпись статистики 1</label><input id="h-stat1" type="text"></div>
+        <div class="form-group"><label>Подпись статистики 2</label><input id="h-stat2" type="text"></div>
+        <div class="form-group"><label>Подпись статистики 3</label><input id="h-stat3" type="text"></div>
+        <div class="form-group"><label>Подпись статистики 4</label><input id="h-stat4" type="text"></div>
+        <div class="form-group"><label>Логотип: текст (напр. DS.)</label><input id="h-logo-text" type="text" placeholder="DS."></div>
+        <div class="form-group full"><label>Логотип: URL изображения (пусто = текст)</label><input id="h-logo-image" type="text" placeholder="images/logo.png"></div>
+      </div>
+    </div>
+
+    <!-- SERVICES TAB -->
+    <div class="tab-pane hidden" id="tab-services">
+      <div class="services-admin" id="servicesAdmin"></div>
+    </div>
+
+    <!-- STACK TAB -->
+    <div class="tab-pane hidden" id="tab-stack">
+      <div class="tab-toolbar">
+        <button class="btn btn-primary" id="addStackBtn">+ Добавить</button>
+      </div>
+      <div class="stack-admin" id="stackAdmin"></div>
+    </div>
+
+    <!-- CONTACTS TAB -->
+    <div class="tab-pane hidden" id="tab-contacts">
+      <div class="field-grid">
+        <div class="form-group"><label>Telegram ник</label><input id="c-tg-handle" type="text"></div>
+        <div class="form-group"><label>Telegram URL</label><input id="c-tg-url" type="text"></div>
+        <div class="form-group"><label>GitHub ник</label><input id="c-gh-handle" type="text"></div>
+        <div class="form-group"><label>GitHub URL</label><input id="c-gh-url" type="text"></div>
+        <div class="form-group"><label>Email</label><input id="c-email" type="text"></div>
+        <div class="form-group"><label>Kwork URL</label><input id="c-kwork" type="text"></div>
+        <div class="form-group"><label>Kwork подпись</label><input id="c-kwork-label" type="text"></div>
+      </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div class="tab-pane hidden" id="tab-settings">
+      <div class="field-grid">
+        <div class="form-group"><label>Текущий пароль</label><input id="s-old-pass" type="password" placeholder="Текущий пароль"></div>
+        <div class="form-group"><label>Новый пароль</label><input id="s-new-pass" type="password" placeholder="Новый пароль"></div>
+        <div class="form-group"><label>Повторите пароль</label><input id="s-new-pass2" type="password" placeholder="Повторите пароль"></div>
+        <div class="form-group full">
+          <button class="btn btn-primary" id="changePassBtn">Изменить пароль</button>
+          <span id="passMsg" style="margin-left:12px;font-size:14px"></span>
+        </div>
+
+        <div class="form-group full">
+          <hr style="border-color:var(--border);margin:16px 0">
+          <h3 style="margin-bottom:4px">📨 Telegram-уведомления о заявках</h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px">
+            Заявки с формы сайта будут приходить в Telegram.<br>
+            1. Создайте бота у <strong>@BotFather</strong> → получите токен.<br>
+            2. Напишите боту <code>/start</code>.<br>
+            3. Откройте <code>api.telegram.org/bot{TOKEN}/getUpdates</code> → возьмите <code>chat.id</code>.
+          </p>
+        </div>
+        <div class="form-group"><label>Bot Token</label><input id="s-tg-token" type="text" placeholder="1234567890:ABCdef..."></div>
+        <div class="form-group"><label>Chat ID (ваш)</label><input id="s-tg-chat-id" type="text" placeholder="123456789"></div>
+        <div class="form-group full" style="color:var(--muted);font-size:12px">
+          ℹ️ Токен и Chat ID сохраняются только в вашем браузере (localStorage). Не публикуйте HTML с этими данными в открытый репозиторий.
+        </div>
+
+        <div class="form-group full">
+          <hr style="border-color:var(--border);margin:16px 0">
+          <h3 style="margin-bottom:12px">Сброс данных</h3>
+          <button class="btn btn-danger" id="resetDataBtn">⚠️ Сбросить все данные к стандартным</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- PROJECT MODAL -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Проект</h3>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="field-grid">
+        <div class="form-group"><label>ID (уникальный)</label><input id="p-id" type="text" placeholder="my-project-id"></div>
+        <div class="form-group"><label>Название</label><input id="p-name" type="text"></div>
+        <div class="form-group full"><label>Описание</label><textarea id="p-desc" rows="2"></textarea></div>
+        <div class="form-group"><label>Категория</label>
+          <select id="p-cat"><option value="landing">Лендинг</option><option value="bot">Бот</option></select>
+        </div>
+        <div class="form-group"><label>Бейдж (текст)</label><input id="p-badge" type="text"></div>
+        <div class="form-group"><label>Цвет бейджа (rgba)</label><input id="p-badge-color" type="text" placeholder="rgba(99,102,241,0.85)"></div>
+        <div class="form-group"><label>Время разработки</label><input id="p-time" type="text" placeholder="2 дня"></div>
+        <div class="form-group"><label>Эмодзи</label><input id="p-emoji" type="text" placeholder="🚀"></div>
+        <div class="form-group full"><label>URL картинки (или пусто)</label><input id="p-image" type="text" placeholder="images/projects/01.webp"></div>
+        <div class="form-group full"><label>Градиент фона</label><input id="p-bg" type="text" placeholder="linear-gradient(135deg,#111,#222)"></div>
+        <div class="form-group full"><label>Теги (через запятую)</label><input id="p-tags" type="text" placeholder="HTML, CSS, JS"></div>
+        <div class="form-group full"><label>Демо URL (лендинг)</label><input id="p-demo" type="text" placeholder="../landings/01/index.html"></div>
+        <div class="form-group full"><label>GitHub URL</label><input id="p-github" type="text" placeholder="https://github.com/..."></div>
+        <div class="form-group full"><label>Прямая ссылка (бот / без демо)</label><input id="p-direct" type="text" placeholder="https://t.me/MyBot"></div>
+        <div class="form-group"><label>Подпись кнопки ссылки</label><input id="p-direct-label" type="text" placeholder="Открыть бота →"></div>
+        <div class="form-group"><label><input type="checkbox" id="p-visible"> Отображать на сайте</label></div>
+        <div class="form-group"><label><input type="checkbox" id="p-featured"> ⭐ На главную (featured)</label></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="modalCancel">Отмена</button>
+      <button class="btn btn-primary" id="modalSave">Сохранить</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast hidden" id="toast">✅ Сохранено!</div>
+
+<script src="../data.js"></script>
+<script src="admin.js"></script>
+</body>
+</html>
