@@ -253,7 +253,7 @@ img { max-width: 100%; display: block; }
 .services-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px;
 }
-.service-card { padding: 36px; text-align: center; position: relative; }
+.service-card { padding: 36px; text-align: center; position: relative; overflow: visible; }
 .service-card-featured {
   border-color: rgba(99,102,241,0.4);
   box-shadow: 0 0 60px rgba(99,102,241,0.1);
