@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRONCORE — Фитнес-студия в Москве</title>
+    <meta name="description" content="Фитнес-студия IRONCORE — силовые тренировки, кроссфит, бокс и йога в Москва-Сити. Первая тренировка бесплатно.">
+    <meta name="keywords" content="фитнес, тренажёрный зал, кроссфит, бокс, Москва, тренировки">
+    <meta property="og:title" content="IRONCORE — Фитнес-студия">
+    <meta property="og:description" content="Тренируй тело. Закаляй характер. Первое занятие — бесплатно.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="#" class="logo">IRON<span>CORE</span></a>
+            <nav class="nav" id="nav">
+                <a href="#programs" class="nav-link">Программы</a>
+                <a href="#pricing" class="nav-link">Цены</a>
+                <a href="#trainers" class="nav-link">Тренеры</a>
+                <a href="#calc" class="nav-link">Калькулятор</a>
+                <a href="#contacts" class="nav-link">Контакты</a>
+            </nav>
+            <a href="#trial" class="btn btn-accent btn-header">Пробная тренировка</a>
+            <button class="burger" id="burger" aria-label="Открыть меню">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Главный экран -->
+        <section class="hero" id="hero">
+            <div class="hero-video-wrap">
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="" type="video/mp4">
+                </video>
+                <div class="hero-overlay"></div>
+            </div>
+            <div class="container hero-content">
+                <div class="hero-badge-wrap">
+                    <span class="hero-badge">🔥 Первая тренировка — бесплатно</span>
+                </div>
+                <h1 class="hero-title">
+                    ТРЕНИРУЙ ТЕЛО.<br>
+                    <span class="accent">ЗАКАЛЯЙ ХАРАКТЕР.</span>
+                </h1>
+                <p class="hero-desc">Силовые, кроссфит, бокс и йога — 6 направлений под одной крышей в Москва-Сити</p>
+                <div class="hero-cta">
+                    <a href="#trial" class="btn btn-accent btn-lg">Записаться бесплатно</a>
+                    <a href="#programs" class="btn btn-outline-light btn-lg">Наши программы →</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <strong>1 200 м²</strong>
+                        <span>площадь зала</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>6</strong>
+                        <span>направлений</span>
+                    </div>
+                    <div class="hero-stat">
+                        <strong>12</strong>
+                        <span>тренеров</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-angle"></div>
+        </section>
+
+        <!-- Программы тренировок -->
+        <section class="programs section" id="programs">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-tag">Направления</span>
+                    <h2 class="section-title">Выберите свою<br>программу</h2>
+                </div>
+                <div class="programs-grid">
+                    <div class="program-card reveal" data-accent="1">
+                        <div class="program-img program-img--strength"></div>
+                        <div class="program-body">
+                            <span class="program-tag">Популярно</span>
+                            <h3>Силовые тренировки</h3>
+                            <p>Наращивание мышечной массы и увеличение силы. Программы для любого уровня — от новичка до продвинутого.</p>
+                            <div class="program-meta">
+                                <span>60 мин</span>
+                                <span>Средний+</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-card reveal" data-accent="2">
+                        <div class="program-img program-img--crossfit"></div>
+                        <div class="program-body">
+                            <h3>Кроссфит</h3>
+                            <p>Функциональные тренировки высокой интенсивности. Развиваем выносливость, скорость и координацию.</p>
+                            <div class="program-meta">
+                                <span>50 мин</span>
+                                <span>Высокий</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-card reveal" data-accent="3">
+                        <div class="program-img program-img--boxing"></div>
+                        <div class="program-body">
+                            <h3>Бокс</h3>
+                            <p>Техника ударов, работа на снарядах и в парах. Отличная кардио-нагрузка и навыки самообороны.</p>
+                            <div class="program-meta">
+                                <span>60 мин</span>
+                                <span>Любой</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-card reveal" data-accent="4">
+                        <div class="program-img program-img--yoga"></div>
+                        <div class="program-body">
+                            <h3>Йога</h3>
+                            <p>Хатха и виньяса-йога. Гибкость, баланс и ментальная разгрузка после рабочего дня.</p>
+                            <div class="program-meta">
+                                <span>75 мин</span>
+                                <span>Начальный</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-card reveal" data-accent="5">
+                        <div class="program-img program-img--stretch"></div>
+                        <div class="program-body">
+                            <h3>Стретчинг</h3>
+                            <p>Глубокая растяжка всех групп мышц. Улучшает подвижность суставов и восстановление.</p>
+                            <div class="program-meta">
+                                <span>45 мин</span>
+                                <span>Начальный</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-card reveal" data-accent="6">
+                        <div class="program-img program-img--functional"></div>
+                        <div class="program-body">
+                            <h3>Функциональный тренинг</h3>
+                            <p>Тренировки с собственным весом, TRX и гирями. Развивают тело комплексно и снижают риск травм.</p>
+                            <div class="program-meta">
+                                <span>50 мин</span>
+                                <span>Средний</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Тарифы -->
+        <section class="pricing section" id="pricing">
+            <div class="container">
+                <div class="section-head center">
+                    <span class="section-tag">Абонементы</span>
+                    <h2 class="section-title">Честные цены<br>без скрытых платежей</h2>
+                </div>
+                <div class="pricing-grid">
+                    <div class="price-card reveal">
+                        <div class="price-head">
+                            <h3>Старт</h3>
+                            <p class="price-desc">Для тех, кто пробует</p>
+                        </div>
+                        <div class="price-amount">
+                            <span class="price-value">3 900</span>
+                            <span class="price-currency">₽/мес</span>
+                        </div>
+                        <ul class="price-features">
+                            <li class="included">8 тренировок в месяц</li>
+                            <li class="included">Доступ к тренажёрному залу</li>
+                            <li class="included">Раздевалка и душ</li>
+                            <li class="excluded">Групповые занятия</li>
+                            <li class="excluded">Персональный тренер</li>
+                            <li class="excluded">Заморозка абонемента</li>
+                        </ul>
+                        <a href="#trial" class="btn btn-outline-accent btn-full">Выбрать</a>
+                    </div>
+                    <div class="price-card featured reveal">
+                        <div class="price-badge">Хит продаж</div>
+                        <div class="price-head">
+                            <h3>Безлимит</h3>
+                            <p class="price-desc">Самый популярный тариф</p>
+                        </div>
+                        <div class="price-amount">
+                            <span class="price-value">6 500</span>
+                            <span class="price-currency">₽/мес</span>
+                        </div>
+                        <ul class="price-features">
+                            <li class="included">Безлимитные посещения</li>
+                            <li class="included">Все направления</li>
+                            <li class="included">Раздевалка и душ</li>
+                            <li class="included">Групповые занятия</li>
+                            <li class="excluded">Персональный тренер</li>
+                            <li class="included">Заморозка до 7 дней</li>
+                        </ul>
+                        <a href="#trial" class="btn btn-accent btn-full">Выбрать</a>
+                    </div>
+                    <div class="price-card reveal">
+                        <div class="price-head">
+                            <h3>Премиум</h3>
+                            <p class="price-desc">Максимальный результат</p>
+                        </div>
+                        <div class="price-amount">
+                            <span class="price-value">12 000</span>
+                            <span class="price-currency">₽/мес</span>
+                        </div>
+                        <ul class="price-features">
+                            <li class="included">Безлимитные посещения</li>
+                            <li class="included">Все направления</li>
+                            <li class="included">Персональный шкафчик</li>
+                            <li class="included">Групповые занятия</li>
+                            <li class="included">4 персональных тренировки</li>
+                            <li class="included">Заморозка до 14 дней</li>
+                        </ul>
+                        <a href="#trial" class="btn btn-outline-accent btn-full">Выбрать</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Тренеры -->
+        <section class="trainers section" id="trainers">
+            <div class="container">
+                <div class="section-head">
+                    <span class="section-tag">Команда</span>
+                    <h2 class="section-title">Наши тренеры</h2>
+                </div>
+                <div class="trainers-grid">
+                    <div class="trainer-card reveal">
+                        <div class="trainer-img trainer-img--1">
+                            <div class="trainer-overlay">
+                                <span>@andrey.fit</span>
+                            </div>
+                        </div>
+                        <div class="trainer-info">
+                            <h3>Андрей Сорокин</h3>
+                            <span class="trainer-spec">Силовые · Кроссфит</span>
+                            <p>Мастер спорта по тяжёлой атлетике, 10 лет тренерского стажа. Подготовил 30+ спортсменов к соревнованиям.</p>
+                        </div>
+                    </div>
+                    <div class="trainer-card reveal">
+                        <div class="trainer-img trainer-img--2">
+                            <div class="trainer-overlay">
+                                <span>@elena.boxing</span>
+                            </div>
+                        </div>
+                        <div class="trainer-info">
+                            <h3>Елена Морозова</h3>
+                            <span class="trainer-spec">Бокс · Функциональный</span>
+                            <p>КМС по боксу, сертифицированный тренер FPA. Ведёт женские и смешанные группы, ставит технику с нуля.</p>
+                        </div>
+                    </div>
+                    <div class="trainer-card reveal">
+                        <div class="trainer-img trainer-img--3">
+                            <div class="trainer-overlay">
+                                <span>@kirill.yoga</span>
+                            </div>
+                        </div>
+                        <div class="trainer-info">
+                            <h3>Кирилл Новиков</h3>
+                            <span class="trainer-spec">Йога · Стретчинг</span>
+                            <p>Преподаватель хатха-йоги с 7-летним стажем. Обучался в Ришикеше (Индия). Мягкий подход к новичкам.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Калькулятор калорий -->
+        <section class="calc section" id="calc">
+            <div class="container">
+                <div class="calc-wrapper">
+                    <div class="calc-info reveal">
+                        <span class="section-tag">Инструменты</span>
+                        <h2 class="section-title">Калькулятор<br>калорий</h2>
+                        <p>Рассчитайте суточную норму калорий по формуле Миффлина — Сан-Жеора. Это поможет правильно выстроить питание и быстрее достичь результата.</p>
+                        <div class="calc-note">
+                            <strong>Как это работает?</strong>
+                            <span>Формула учитывает ваш пол, возраст, рост, вес и уровень физической активности для расчёта базового обмена веществ (BMR).</span>
+                        </div>
+                    </div>
+                    <form class="calc-form reveal" id="calc-form">
+                        <div class="calc-gender">
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="male" checked>
+                                <span>Мужчина</span>
+                            </label>
+                            <label class="gender-option">
+                                <input type="radio" name="gender" value="female">
+                                <span>Женщина</span>
+                            </label>
+                        </div>
+                        <div class="calc-fields">
+                            <div class="form-group">
+                                <label for="calc-age">Возраст</label>
+                                <input type="number" id="calc-age" min="14" max="80" value="25" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="calc-height">Рост, см</label>
+                                <input type="number" id="calc-height" min="120" max="250" value="175" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="calc-weight">Вес, кг</label>
+                                <input type="number" id="calc-weight" min="30" max="250" value="75" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="calc-activity">Уровень активности</label>
+                            <select id="calc-activity">
+                                <option value="1.2">Сидячий образ жизни</option>
+                                <option value="1.375">Лёгкая активность (1–3 раза/нед)</option>
+                                <option value="1.55" selected>Средняя активность (3–5 раз/нед)</option>
+                                <option value="1.725">Высокая активность (6–7 раз/нед)</option>
+                                <option value="1.9">Экстремальная (2 раза/день)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-accent btn-full">Рассчитать</button>
+                        <div class="calc-result" id="calc-result" style="display:none;">
+                            <div class="result-item">
+                                <span class="result-label">Базовый обмен (BMR)</span>
+                                <span class="result-value" id="result-bmr">—</span>
+                            </div>
+                            <div class="result-item main">
+                                <span class="result-label">Суточная норма</span>
+                                <span class="result-value" id="result-total">—</span>
+                            </div>
+                            <div class="result-goals">
+                                <div class="goal">
+                                    <span class="goal-label">Похудение</span>
+                                    <span class="goal-value" id="result-loss">—</span>
+                                </div>
+                                <div class="goal">
+                                    <span class="goal-label">Поддержание</span>
+                                    <span class="goal-value" id="result-maintain">—</span>
+                                </div>
+                                <div class="goal">
+                                    <span class="goal-label">Набор массы</span>
+                                    <span class="goal-value" id="result-gain">—</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Пробная тренировка -->
+        <section class="trial section" id="trial">
+            <div class="container">
+                <div class="trial-wrapper reveal">
+                    <div class="trial-text">
+                        <h2 class="section-title">Попробуйте<br>бесплатно</h2>
+                        <p>Запишитесь на пробную тренировку — покажем зал, познакомим с тренером и составим план под ваши цели. Без обязательств.</p>
+                    </div>
+                    <form class="trial-form" id="trial-form" novalidate>
+                        <input type="text" id="trial-name" name="name" placeholder="Ваше имя" required>
+                        <input type="tel" id="trial-phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+                        <select id="trial-program" name="program">
+                            <option value="" disabled selected>Интересующее направление</option>
+                            <option>Силовые тренировки</option>
+                            <option>Кроссфит</option>
+                            <option>Бокс</option>
+                            <option>Йога</option>
+                            <option>Стретчинг</option>
+                            <option>Функциональный тренинг</option>
+                            <option>Пока не определился</option>
+                        </select>
+                        <button type="submit" class="btn btn-accent btn-full">Записаться бесплатно</button>
+                        <span class="form-hint">Перезвоним в течение 10 минут</span>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section class="contacts section" id="contacts">
+            <div class="container">
+                <div class="contacts-grid">
+                    <div class="contacts-info reveal">
+                        <span class="section-tag">Контакты</span>
+                        <h2 class="section-title">Приходите к нам</h2>
+                        <div class="contact-list">
+                            <div class="contact-row">
+                                <div class="contact-icon">📍</div>
+                                <div>
+                                    <strong>Адрес</strong>
+                                    <p>Пресненская наб., 8, стр. 1<br>Москва-Сити, башня «Город Столиц»<br>м. Выставочная / Деловой центр</p>
+                                </div>
+                            </div>
+                            <div class="contact-row">
+                                <div class="contact-icon">📞</div>
+                                <div>
+                                    <strong>Телефон</strong>
+                                    <p><a href="tel:+74952345678">+7 (495) 234-56-78</a></p>
+                                </div>
+                            </div>
+                            <div class="contact-row">
+                                <div class="contact-icon">🕐</div>
+                                <div>
+                                    <strong>Часы работы</strong>
+                                    <p>Ежедневно: 06:00 – 24:00<br>Без выходных</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contacts-map reveal">
+                        <iframe 
+                            src="https://yandex.ru/map-widget/v1/?ll=37.537120%2C55.749792&z=15&pt=37.537120%2C55.749792%2Cpm2gnm"
+                            width="100%" height="420" frameborder="0"
+                            title="IRONCORE на карте" loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container footer-inner">
+            <a href="#" class="footer-logo">IRON<span>CORE</span></a>
+            <div class="footer-nav">
+                <a href="#programs">Программы</a>
+                <a href="#pricing">Цены</a>
+                <a href="#trainers">Тренеры</a>
+                <a href="#contacts">Контакты</a>
+            </div>
+            <div class="footer-socials">
+                <a href="#" aria-label="Telegram">TG</a>
+                <a href="#" aria-label="Instagram">IG</a>
+                <a href="#" aria-label="YouTube">YT</a>
+            </div>
+            <p class="footer-copy">© 2021–2026 IRONCORE Fitness. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- Модалка успеха -->
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close">×</button>
+            <div class="modal-emoji">💪</div>
+            <h3>Отлично, ждём вас!</h3>
+            <p>Мы перезвоним в течение 10 минут, чтобы подобрать удобное время для тренировки.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
